@@ -7,26 +7,23 @@ use Core\Database;
 
 class AuthController extends Controller
 {
-
+ 
   public function register(){
 
     if($_SERVER['REQUEST_METHOD'] === "POST"){
       $name = $_POST['name'];
-      $username = $_POST['username'];
       $email = $_POST['email'];
       $password = $_POST['password'];
 
       $db = Database::connect();
 
-      $stm = $db->prepare("INSERT INTO users (name, username, email, password) VALUES (:name, :username, :email, :password)");
+      $stm = $db->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)");
       
       $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
-      $stm->bindParam(":name", $name);
-      $stm->bindParam(":username", $username);
+      $stm->bindParam(":nome", $name);
       $stm->bindParam(":email", $email);
-      
-      $stm->bindParam(":password", $hash_password);
+      $stm->bindParam(":senha", $hash_password);
       
         if($stm->execute()) {
           $this->redirect('/login');
@@ -35,27 +32,26 @@ class AuthController extends Controller
     }
     $this->view('/auth/register');
   }
-
+ 
   public function login()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      $username = $_POST['username'];
-      $password = $_POST['password'];
+      $email = $_POST['email'];
+      $password = $_POST['senha'];
 
       $db = Database::connect();
-      $stm = $db->prepare("SELECT * FROM users WHERE username = :username");
+      $stm = $db->prepare("SELECT * FROM usuarios WHERE email = :email");
 
-      $stm->bindParam(":username", $username);
+      $stm->bindParam(":email", $email);
       $stm->execute();
 
       $user = $stm->fetch();
       session_start();
 
-      if($user && password_verify($password, $user['password'])){
+      if($user && password_verify($password, $user['senha'])){
 
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['name'] = $user['name'];
-        $_SESSION['username'] = $user['username'];
 
         $this->redirect('/dash');
 
@@ -63,4 +59,4 @@ class AuthController extends Controller
     }
     $this->view('auth/login');
   }
-}
+ }

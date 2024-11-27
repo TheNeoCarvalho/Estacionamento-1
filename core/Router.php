@@ -21,6 +21,18 @@ class Router
                 $controllerName = 'App\controllers\AuthController';
                 $actionName = 'login';
                 break;
+            case '/dash':
+                $controllerName = 'App\controllers\DashController';
+                $actionName = 'dash';
+                break;
+            case '/dash/index':
+                $controllerName = 'App\controllers\DashController';
+                $actionName = 'index';
+                break;
+            case '/dash/update':
+                $controllerName = 'App\controllers\DashController';
+                $actionName = 'update';
+                break;
              //Adicionar novas rotas aqui....
             default:
                 http_response_code(404);

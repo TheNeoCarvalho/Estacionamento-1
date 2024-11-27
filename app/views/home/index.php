@@ -11,8 +11,8 @@
 <div class="flex flex-col items-center justify-center bg-white rounded mt-32 p-8">
     <div class="w-full max-w-4xl mx-auto p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="flex flex-col justify-center items-center md:items-start text-center md:text-left">
-        <h1 class="text-4xl font-bold text-gray-800 mb-4">Título</h1>
-        <p class="text-lg text-gray-600">Subtítulo</p>
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">Estacionamento</h1>
+        <p class="text-lg text-gray-600">Conecte-se no Estacionamento</p>
       </div>
       <div class="flex flex-col justify-center items-center">
         <a href="/login"
