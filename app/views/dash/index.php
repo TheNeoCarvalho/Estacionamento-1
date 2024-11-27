@@ -35,9 +35,8 @@
         </thead>
         <tbody>
             <?php
-
-            echo $intervalo;
-            
+            //refazer
+            //usar o foreach
             ?>
         </tbody>
     </table>
